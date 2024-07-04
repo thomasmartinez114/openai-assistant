@@ -42,7 +42,7 @@ assistant_id = "asst_vkixZZFtR8Gx9T4a5NIqpM1y"
 thread_id = "thread_NILtGMVU4FBDLH1XzuAcKPi9"
 
 # === Create a message ===
-message = "What are the best exercises for lean muscles and getting strong?"
+message = "How many reps do I need to do to build lean muscles?"
 message = client.beta.threads.messages.create(
     thread_id=thread_id,
     role="user",
@@ -89,3 +89,10 @@ def wait_for_run_completion(client, thread_id, run_id, sleep_interval=5):
 
 # === Run ===
 wait_for_run_completion(client=client, thread_id=thread_id, run_id=run.id)
+
+# === Steps --- Logs ===
+run_steps = client.beta.threads.runs.steps.list(
+    thread_id=thread_id,
+    run_id=run.id
+)
+print(f"Steps----> {run_steps.data}")
